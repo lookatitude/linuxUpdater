@@ -1,0 +1,13 @@
+apt:
+  update: true
+  upgrade: true
+  distUpgrade: true
+  autoremove: true
+  autoclean: true
+
+brew:
+  install: true
+  update: true
+  upgrade: true
+  cleanup: true
+  doctor: true
