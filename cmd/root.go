@@ -12,6 +12,16 @@ var rootCmd = &cobra.Command{
 	Use:   "linux-updater",
 	Short: "linux-updater is a CLI tool for updating Linux system and managing packages",
 	Long:  `linux-updater is a CLI tool for updating Linux system and managing packages. It supports updating system packages using apt and brew.`,
+	Run: func(cmd *cobra.Command, args []string) {
+		aptCmd := NewAptCmd()
+		aptCmd.Run(aptCmd, args)
+		brewCmd := NewBrewCmd()
+		brewCmd.Run(brewCmd, args)
+		snapCmd := NewSnapCmd()
+		snapCmd.Run(snapCmd, args)
+		flatpakCmd := NewFlatpakCmd()
+		flatpakCmd.Run(flatpakCmd, args)
+	},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -25,6 +35,12 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
+
+	// Add commands
+	rootCmd.AddCommand(NewAptCmd())
+	rootCmd.AddCommand(NewBrewCmd())
+	rootCmd.AddCommand(NewSnapCmd())
+	rootCmd.AddCommand(NewFlatpakCmd())
 }
 
 func initConfig() {

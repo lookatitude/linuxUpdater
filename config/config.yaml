@@ -11,3 +11,9 @@ brew:
   upgrade: true
   cleanup: true
   doctor: true
+
+snap:
+  refresh: true
+
+flatpak:
+  update: true
