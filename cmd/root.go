@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-var rootCmd = &cobra.Command{
+var RootCmd = &cobra.Command{
 	Use:   "linux-updater",
 	Short: "linux-updater is a CLI tool for updating Linux system and managing packages",
 	Long:  `linux-updater is a CLI tool for updating Linux system and managing packages. It supports updating system packages using apt and brew.`,
@@ -25,9 +25,9 @@ var rootCmd = &cobra.Command{
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
-// This is called by main.main(). It only needs to happen once to the rootCmd.
+// This is called by main.main(). It only needs to happen once to the RootCmd.
 func Execute() {
-	if err := rootCmd.Execute(); err != nil {
+	if err := RootCmd.Execute(); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
@@ -37,10 +37,10 @@ func init() {
 	cobra.OnInitialize(initConfig)
 
 	// Add commands
-	rootCmd.AddCommand(NewAptCmd())
-	rootCmd.AddCommand(NewBrewCmd())
-	rootCmd.AddCommand(NewSnapCmd())
-	rootCmd.AddCommand(NewFlatpakCmd())
+	RootCmd.AddCommand(NewAptCmd())
+	RootCmd.AddCommand(NewBrewCmd())
+	RootCmd.AddCommand(NewSnapCmd())
+	RootCmd.AddCommand(NewFlatpakCmd())
 }
 
 func initConfig() {
