@@ -41,6 +41,7 @@ func init() {
 	RootCmd.AddCommand(NewBrewCmd())
 	RootCmd.AddCommand(NewSnapCmd())
 	RootCmd.AddCommand(NewFlatpakCmd())
+	RootCmd.AddCommand(NewDocCmd())
 }
 
 func initConfig() {
